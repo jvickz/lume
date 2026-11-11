@@ -1,0 +1,9 @@
+LUME 0.4.1 — LEITOR DE DOCUMENTOS
+
+Extraia a pasta inteira. Instale Python 3.10 ou superior com Add Python to PATH e abra iniciar.cmd.
+Na primeira execução, é necessária internet para instalar pypdf. Depois a leitura básica funciona localmente.
+Use Abrir exemplo fictício para conhecer a tela.
+
+Este pacote é independente. Guarde o Edital Claro v0.3 se usar a extração especializada de editais.
+Resumos básicos selecionam trechos do PDF; explicações precisam de IA local configurada (README.md).
+Não inclui OCR nem instalador .exe.

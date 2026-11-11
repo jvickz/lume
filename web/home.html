@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lume — leitor de documentos</title>
+<meta name="description" content="Organize a leitura de PDFs, encontre trechos importantes e confira suas fontes.">
+<link rel="stylesheet" href="/lume.css"><script defer src="/lume.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<aside class="rail">
+<a href="/" class="brand" aria-label="Lume, início">Lume<span class="brand-tag">documentos</span></a>
+<p class="rail-label">NAVEGAÇÃO</p>
+<button id="newDoc" class="nav-button">＋ Novo documento</button>
+
+<div class="history-heading">Salvos neste navegador <span id="historyCount">0</span></div>
+<div id="history" class="history"></div>
+<div class="rail-bottom"><span class="local-dot"></span> Leitura básica local<p>Histórico salvo apenas neste navegador.</p><small>JOÃO VITOR MARINHO · v0.4.1</small></div>
+</aside>
+<main id="content">
+<header class="topbar"><span>Documentos <span class="muted">/ Leitor de documentos</span></span><span class="tag">v0.4.1</span></header>
+<div id="status" role="status" aria-live="polite"></div>
+<section id="welcome">
+<div class="hero"><div><p class="eyebrow">LEITURA DE DOCUMENTOS</p><h1>Leia e organize seus PDFs.</h1><p class="lead">Abra um documento para consultar os trechos selecionados, localizar informações e registrar suas anotações.</p></div></div>
+<div class="entry-grid">
+<section id="dropzone" class="upload">
+<h2>Abrir um documento</h2><p>Arraste seu PDF ou escolha um arquivo.</p>
+<label for="pdfInput" class="button primary">Selecionar PDF</label>
+<input id="pdfInput" type="file" accept=".pdf,application/pdf" class="file-input">
+<p class="micro">PDF com texto · até 20 MiB · até 300 páginas</p>
+<div class="upload-links"><button id="demo" class="text-button">Abrir exemplo fictício</button><label for="jsonInput" class="text-button">Reabrir análise JSON</label><input id="jsonInput" type="file" accept=".json,application/json" class="file-input"></div>
+</section>
+<section class="possibilities"><p class="eyebrow">COMO USAR</p>
+<article><span>01</span><div><h3>Consulte os trechos</h3><p>Uma seleção de trechos do documento, com referência à página original.</p></div></article>
+<article><span>02</span><div><h3>Confira a fonte</h3><p>Amplie a leitura, procure termos e confira menções a ações e datas.</p></div></article>
+<article><span>03</span><div><h3>Registre e exporte</h3><p>Salve anotações e exporte a leitura. Explicações e perguntas ficam disponíveis com a IA local configurada.</p></div></article>
+</section></div>
+
+<p class="notice">Nesta versão, a leitura básica seleciona trechos originais. PDFs digitalizados ainda precisam de OCR externo. Gráficos, tabelas complexas e arquivos protegidos podem exigir tratamento adicional.</p>
+</section>
+<section id="reader" hidden>
+<div class="document-heading"><div><p id="documentType" class="eyebrow"></p><h1 id="filename"></h1><p id="metadata" class="muted"></p></div><button id="save" class="button secondary">Salvar leitura</button></div>
+<div id="warnings" class="notice"></div>
+<div class="metrics"><div><strong id="pagesCount">0</strong><span>páginas com texto</span></div><div><strong id="quoteCount">0</strong><span>trechos no panorama</span></div><div><strong id="sourceCount">0</strong><span>páginas no panorama</span></div></div>
+<div class="reading-toolbar"><div class="tabs" role="tablist" aria-label="Tipo de leitura"><button id="shortTab" role="tab" aria-controls="readingPanel" aria-selected="true">Essencial</button><button id="detailTab" role="tab" aria-controls="readingPanel" aria-selected="false" tabindex="-1">Detalhado</button><button id="signalsTab" role="tab" aria-controls="readingPanel" aria-selected="false" tabindex="-1">Ações e datas</button></div><div><button id="exportJson" class="text-button">Exportar JSON ↓</button><button id="exportHtml" class="text-button">Relatório ↓</button></div></div>
+<div class="workspace"><div>
+<section id="readingPanel" role="tabpanel" aria-labelledby="shortTab"><p id="readingHint" class="micro"></p><div id="quotes"></div></section>
+<section class="ai-card"><div class="section-title"><h2>Explicação e perguntas</h2><span class="tag">IA opcional</span></div><p id="aiState">Consultando configuração…</p><button id="explain" class="button primary" disabled>Explicar estes trechos</button><form id="questionForm"><label for="question">O que você quer entender?</label><div class="ask-row"><input id="question" maxlength="1000" placeholder="Ex.: qual é o objetivo do projeto?" disabled><button id="ask" type="submit" class="button secondary" disabled>Perguntar</button></div></form><p class="micro">A IA usa uma seleção de trechos e pode errar. As fontes ficam junto da resposta.</p><div id="answer" aria-live="polite"></div></section>
+<section class="notes-card"><label for="notes">Minhas anotações</label><textarea id="notes" maxlength="20000" rows="3" placeholder="Registre dúvidas e o que precisa conferir."></textarea><p class="micro">Anotações acompanham o histórico e o JSON exportado.</p></section>
+</div>
+<aside class="source-panel"><div class="section-title"><h2>Confira na fonte</h2><span id="pageLabel" class="tag"></span></div><label for="search">Buscar no texto extraído</label><input id="search" type="search" placeholder="Uma palavra ou expressão"><div class="page-controls"><button id="prev" aria-label="Página anterior">←</button><select id="pageSelect" aria-label="Selecionar página"></select><button id="next" aria-label="Próxima página">→</button></div><p id="searchMeta" class="micro"></p><pre id="source" tabindex="-1"></pre><p class="micro">Página física do PDF. A ordem visual do original pode diferir deste texto.</p></aside>
+</div></section>
+<footer><strong>Lume</strong><span>Leitura local · versão 0.4.1</span><a href="/leia-me" target="_blank" rel="noopener">Guia de uso ↗</a></footer>
+</main></body></html>
+
